@@ -3,7 +3,7 @@ import useFetch from '../hooks/useFetch'
 
 const API_URL = 'https://rickandmortyapi.com/api/character'
 
-const CharacterGrid = () => {
+const CharacterGrid = ({ searchTerm }) => {
   const { data, loading, error } = useFetch(API_URL)
 
   if (loading) {
@@ -31,6 +31,11 @@ const CharacterGrid = () => {
     )
   }
 
+  const filteredCharacters = data?.filter((character) => {
+    // Filtramos personajes por nombre en tiempo real, sin distinguir mayúsculas/minúsculas
+    return character.name.toLowerCase().includes(searchTerm.toLowerCase())
+  })
+
   return (
     <main className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
       <header className="mx-auto max-w-6xl text-center">
@@ -44,13 +49,16 @@ const CharacterGrid = () => {
       </header>
 
       <section className="mx-auto mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {data?.length ? (
-          data.map((character) => (
+        {filteredCharacters?.length ? (
+          filteredCharacters.map((character) => (
             <CharacterCard key={character.id} character={character} />
           ))
         ) : (
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 text-slate-700 shadow-lg shadow-slate-200/80">
-            No se encontraron personajes en este momento.
+          <div className="col-span-full rounded-3xl border border-slate-200 bg-white p-8 text-center text-slate-700 shadow-lg shadow-slate-200/80">
+            <h2 className="text-xl font-semibold text-slate-900">No se encontraron personajes</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              No se encontraron personajes que coincidan con la búsqueda.
+            </p>
           </div>
         )}
       </section>
