@@ -3,7 +3,7 @@ import useFetch from '../hooks/useFetch'
 
 const API_URL = 'https://rickandmortyapi.com/api/character'
 
-const CharacterGrid = ({ searchTerm, favorites, toggleFavorite }) => {
+const CharacterGrid = ({ searchTerm, favorites, blocked, toggleFavorite, blockCharacter }) => {
   const { data, loading, error } = useFetch(API_URL)
 
   if (loading) {
@@ -32,8 +32,10 @@ const CharacterGrid = ({ searchTerm, favorites, toggleFavorite }) => {
   }
 
   const filteredCharacters = data?.filter((character) => {
-    // Filtramos personajes por nombre en tiempo real, sin distinguir mayúsculas/minúsculas
-    return character.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const isBlocked = blocked.some((blockedCharacter) => blockedCharacter.id === character.id)
+
+    // Excluimos personajes bloqueados y aplicamos filtro por texto en el nombre.
+    return !isBlocked && character.name.toLowerCase().includes(searchTerm.toLowerCase())
   })
 
   return (
@@ -56,6 +58,7 @@ const CharacterGrid = ({ searchTerm, favorites, toggleFavorite }) => {
               character={character}
               favorites={favorites}
               toggleFavorite={toggleFavorite}
+              blockCharacter={blockCharacter}
             />
           ))
         ) : (

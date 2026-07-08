@@ -1,4 +1,4 @@
-const CharacterCard = ({ character, favorites, toggleFavorite }) => {
+const CharacterCard = ({ character, favorites, toggleFavorite, blockCharacter }) => {
   const { image, name, status, species } = character
   const isFavorite = favorites.some((fav) => fav.id === character.id)
 
@@ -33,8 +33,8 @@ const CharacterCard = ({ character, favorites, toggleFavorite }) => {
           </button>
           <button
             type="button"
-            disabled
-            className="rounded-2xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-700 opacity-70 cursor-not-allowed"
+            onClick={() => blockCharacter(character)}
+            className="rounded-2xl border border-slate-300 bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
           >
             Bloquear
           </button>
