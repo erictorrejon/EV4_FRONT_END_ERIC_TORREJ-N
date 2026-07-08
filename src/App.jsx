@@ -2,12 +2,25 @@ import { useState } from 'react'
 import CharacterGrid from './components/CharacterGrid'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
+import Stats from './components/Stats'
+import useFetch from './hooks/useFetch'
+import useLocalStorage from './hooks/useLocalStorage'
 import './App.css'
+
+const API_URL = 'https://rickandmortyapi.com/api/character'
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('')
-  const [favorites, setFavorites] = useState([])
-  const [blocked, setBlocked] = useState([])
+  const [favorites, setFavorites] = useLocalStorage('favorites_characters', [])
+  const [blocked, setBlocked] = useLocalStorage('blocked_characters', [])
+  const { data, loading, error } = useFetch(API_URL)
+
+  const filteredCharacters = data?.filter((character) => {
+    const isBlocked = blocked.some((blockedCharacter) => blockedCharacter.id === character.id)
+    return !isBlocked && character.name.toLowerCase().includes(searchTerm.toLowerCase())
+  })
+
+  const totalCharacters = filteredCharacters?.length ?? 0
 
   const toggleFavorite = (character) => {
     setFavorites((currentFavorites) => {
@@ -41,11 +54,17 @@ const App = () => {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <Stats
+        totalCharacters={totalCharacters}
+        totalFavorites={favorites.length}
+        totalBlocked={blocked.length}
+      />
       <div className="mx-auto grid gap-8 px-4 py-10 sm:px-6 lg:max-w-7xl lg:grid-cols-[1.5fr,0.9fr] lg:gap-10 lg:px-8">
         <CharacterGrid
-          searchTerm={searchTerm}
+          characters={filteredCharacters}
+          loading={loading}
+          error={error}
           favorites={favorites}
-          blocked={blocked}
           toggleFavorite={toggleFavorite}
           blockCharacter={blockCharacter}
         />

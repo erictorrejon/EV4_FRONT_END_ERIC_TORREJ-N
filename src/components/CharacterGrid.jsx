@@ -1,11 +1,6 @@
 import CharacterCard from './CharacterCard'
-import useFetch from '../hooks/useFetch'
 
-const API_URL = 'https://rickandmortyapi.com/api/character'
-
-const CharacterGrid = ({ searchTerm, favorites, blocked, toggleFavorite, blockCharacter }) => {
-  const { data, loading, error } = useFetch(API_URL)
-
+const CharacterGrid = ({ characters, favorites, toggleFavorite, blockCharacter, loading, error }) => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
@@ -31,13 +26,6 @@ const CharacterGrid = ({ searchTerm, favorites, blocked, toggleFavorite, blockCh
     )
   }
 
-  const filteredCharacters = data?.filter((character) => {
-    const isBlocked = blocked.some((blockedCharacter) => blockedCharacter.id === character.id)
-
-    // Excluimos personajes bloqueados y aplicamos filtro por texto en el nombre.
-    return !isBlocked && character.name.toLowerCase().includes(searchTerm.toLowerCase())
-  })
-
   return (
     <main className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
       <header className="mx-auto max-w-6xl text-center">
@@ -51,8 +39,8 @@ const CharacterGrid = ({ searchTerm, favorites, blocked, toggleFavorite, blockCh
       </header>
 
       <section className="mx-auto mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filteredCharacters?.length ? (
-          filteredCharacters.map((character) => (
+        {characters?.length ? (
+          characters.map((character) => (
             <CharacterCard
               key={character.id}
               character={character}
