@@ -161,6 +161,76 @@
   }
 }
 
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f7f3ea 0%, #efe6d0 100%); /* beige claro */
+  overflow: hidden;
+}
+
+.app-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* textura muy sutil para evitar apariencia completamente plana */
+  background-image: radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 180px 180px;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.app-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 10%, rgba(0,0,0,0.02), transparent 20%),
+    radial-gradient(circle at 80% 18%, rgba(0,0,0,0.02), transparent 22%);
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.character-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.character-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(16,185,129,0.1), transparent 30%);
+  pointer-events: none;
+}
+
+.selected-card {
+  border-color: rgba(16,185,129,0.65) !important;
+  box-shadow: 0 0 40px rgba(16,185,129,0.32), 0 24px 64px rgba(0,0,0,0.45) !important;
+}
+
+@keyframes driftStars {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-180px, -120px, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 360ms cubic-bezier(.22,.9,.31,1) both;
+}
+
 .ticks {
   position: relative;
   width: 100%;
@@ -181,4 +251,27 @@
     right: 0;
     border-right-color: var(--border);
   }
+}
+
+.glass-card {
+  background-color: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(63, 70, 85, 0.55);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.22);
+  border-radius: 2rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.35s ease-out both;
 }

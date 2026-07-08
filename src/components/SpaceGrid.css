@@ -1,0 +1,187 @@
+.space-scene {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  color: #e5e7eb;
+  background: radial-gradient(circle at top left, rgba(16,185,129,0.18), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(99,102,241,0.16), transparent 22%),
+    linear-gradient(180deg, #020617 0%, #070b16 50%, #05070f 100%);
+}
+
+.space-scene::before,
+.space-scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 10%);
+  opacity: 0.1;
+  animation: pulseBackground 12s ease-in-out infinite alternate;
+}
+
+.space-scene::after {
+  background: radial-gradient(circle at 80% 20%, rgba(16,185,129,0.24), transparent 18%),
+    radial-gradient(circle at 20% 80%, rgba(59,130,246,0.18), transparent 14%);
+  opacity: 0.08;
+  animation-duration: 18s;
+}
+
+.space-scene__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.space-scene__stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.75) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-size: 120px 120px, 80px 80px, 220px 220px;
+  background-position: 0 0, 40px 60px, 20px 120px;
+  opacity: 0.35;
+  animation: driftStars 30s linear infinite;
+}
+
+.space-scene__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(16,185,129,0.16) 0%, transparent 35%);
+  opacity: 0.55;
+}
+
+.space-scene__content {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.space-scene__header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.space-scene__eyebrow {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(16,185,129,0.25);
+  border-radius: 9999px;
+  color: #a7f3d0;
+  background: rgba(16,185,129,0.08);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+}
+
+.space-scene__title {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #f8fafc;
+}
+
+.space-scene__subtitle {
+  max-width: 720px;
+  margin: 1rem auto 0;
+  color: rgba(226,232,240,0.76);
+  line-height: 1.8;
+}
+
+.space-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.space-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(148,163,184,0.15);
+  border-radius: 2rem;
+  background: rgba(15,23,42,0.7);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 60px rgba(15,23,42,0.4);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.space-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(16,185,129,0.45);
+  box-shadow: 0 0 36px rgba(16,185,129,0.22), 0 24px 64px rgba(15,23,42,0.45);
+}
+
+.space-card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.space-card:hover .space-card__image {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 16px rgba(16,185,129,0.35));
+}
+
+.space-card__body {
+  padding: 1.25rem;
+}
+
+.space-card__name {
+  margin-bottom: 0.35rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.space-card__meta {
+  color: rgba(226,232,240,0.72);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.space-grid__empty {
+  grid-column: 1 / -1;
+  padding: 2rem;
+  border-radius: 1.75rem;
+  background: rgba(15,23,42,0.65);
+  border: 1px solid rgba(148,163,184,0.12);
+  color: #cbd5e1;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .space-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .space-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@keyframes driftStars {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-180px, -120px, 0);
+  }
+}
+
+@keyframes pulseBackground {
+  from {
+    opacity: 0.08;
+  }
+  to {
+    opacity: 0.18;
+  }
+}

@@ -1,23 +1,24 @@
 const Stats = ({ totalCharacters, totalFavorites, totalBlocked }) => {
   return (
     <section className="mx-auto mt-6 max-w-6xl px-4 sm:px-6 lg:px-8">
+      {/* Las tarjetas usan un tratamiento glassmorphism para reforzar el estilo futurista */}
       <div className="grid gap-4 sm:grid-cols-3">
-        <article className="rounded-[2rem] bg-slate-900/95 p-6 shadow-2xl shadow-slate-950/40 ring-1 ring-slate-700 transition-all duration-300 hover:-translate-y-1">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-400">Personajes visibles</p>
-          <p className="mt-4 text-5xl font-extrabold text-white">{totalCharacters}</p>
-          <p className="mt-3 text-sm leading-6 text-slate-400">Total de personajes que hay en pantalla según el filtro actual.</p>
+        <article className="glass-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_0_35px_rgba(16,185,129,0.08)]">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-700">Personajes visibles</p>
+          <p className="mt-4 text-5xl font-extrabold text-slate-900">{totalCharacters}</p>
+          <p className="mt-3 text-sm leading-6 text-slate-700">Total de personajes que hay en pantalla según el filtro actual.</p>
         </article>
 
-        <article className="rounded-[2rem] bg-emerald-950/95 p-6 shadow-2xl shadow-emerald-950/40 ring-1 ring-emerald-700 transition-all duration-300 hover:-translate-y-1">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-300">Favoritos</p>
-          <p className="mt-4 text-5xl font-extrabold text-emerald-100">{totalFavorites}</p>
-          <p className="mt-3 text-sm leading-6 text-emerald-200/80">Personajes que guardaste como favoritos y se mantienen en localStorage.</p>
+        <article className="glass-card border-emerald-200/40 bg-white/60 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/40 hover:shadow-[0_0_35px_rgba(16,185,129,0.06)]">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-600">Favoritos</p>
+          <p className="mt-4 text-5xl font-extrabold text-emerald-700">{totalFavorites}</p>
+          <p className="mt-3 text-sm leading-6 text-emerald-700/80">Personajes que guardaste como favoritos y se mantienen en localStorage.</p>
         </article>
 
-        <article className="rounded-[2rem] bg-violet-950/95 p-6 shadow-2xl shadow-violet-950/40 ring-1 ring-violet-700 transition-all duration-300 hover:-translate-y-1">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-violet-300">Bloqueados</p>
-          <p className="mt-4 text-5xl font-extrabold text-violet-100">{totalBlocked}</p>
-          <p className="mt-3 text-sm leading-6 text-violet-200/80">Personajes bloqueados que no se muestran en la grilla principal.</p>
+        <article className="glass-card border-blue-200/40 bg-white/60 transition-all duration-300 hover:-translate-y-1 hover:border-blue-300/40 hover:shadow-[0_0_35px_rgba(59,130,246,0.06)]">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-blue-600">Bloqueados</p>
+          <p className="mt-4 text-5xl font-extrabold text-blue-700">{totalBlocked}</p>
+          <p className="mt-3 text-sm leading-6 text-blue-700/80">Personajes bloqueados que no se muestran en la grilla principal.</p>
         </article>
       </div>
     </section>
