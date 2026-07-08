@@ -3,8 +3,8 @@ const CharacterCard = ({ character, favorites, toggleFavorite, blockCharacter })
   const isFavorite = favorites.some((fav) => fav.id === character.id)
 
   return (
-    <article className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/80 transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
-      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+    <article className="group overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-900 shadow-xl shadow-slate-950/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+      <div className="relative aspect-[4/3] overflow-hidden bg-slate-800">
         <img
           src={image}
           alt={name}
@@ -14,12 +14,12 @@ const CharacterCard = ({ character, favorites, toggleFavorite, blockCharacter })
 
       <div className="space-y-4 p-5">
         <div>
-          <h2 className="text-xl font-semibold text-slate-900">{name}</h2>
-          <p className="mt-2 text-sm text-slate-600">
-            <span className="font-medium text-slate-800">Estado:</span> {status}
+          <h2 className="text-xl font-semibold text-white">{name}</h2>
+          <p className="mt-2 text-sm text-slate-300">
+            <span className="font-medium text-slate-200">Estado:</span> {status}
           </p>
-          <p className="text-sm text-slate-600">
-            <span className="font-medium text-slate-800">Especie:</span> {species}
+          <p className="text-sm text-slate-300">
+            <span className="font-medium text-slate-200">Especie:</span> {species}
           </p>
         </div>
 
@@ -27,14 +27,14 @@ const CharacterCard = ({ character, favorites, toggleFavorite, blockCharacter })
           <button
             type="button"
             onClick={() => toggleFavorite(character)}
-            className={`rounded-2xl px-3 py-2 text-sm font-semibold transition ${isFavorite ? 'border border-rose-300 bg-rose-100 text-rose-700 shadow-sm' : 'border border-slate-200 bg-slate-100 text-slate-700 hover:border-cyan-300 hover:bg-cyan-50'}`}
+            className={`rounded-2xl px-3 py-2 text-sm font-semibold transition-all duration-300 ${isFavorite ? 'border border-rose-400 bg-rose-500/10 text-rose-200 shadow-sm hover:bg-rose-500/20' : 'border border-slate-700 bg-slate-800 text-slate-100 hover:border-emerald-400 hover:bg-emerald-500/10'}`}
           >
             {isFavorite ? 'Favorito' : 'Marcar favorito'}
           </button>
           <button
             type="button"
             onClick={() => blockCharacter(character)}
-            className="rounded-2xl border border-slate-300 bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
+            className="rounded-2xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-semibold text-slate-100 transition-all duration-300 hover:border-violet-400 hover:bg-violet-500/10"
           >
             Bloquear
           </button>

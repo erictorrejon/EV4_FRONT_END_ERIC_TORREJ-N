@@ -52,14 +52,14 @@ const App = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
       <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Stats
         totalCharacters={totalCharacters}
         totalFavorites={favorites.length}
         totalBlocked={blocked.length}
       />
-      <div className="mx-auto grid gap-8 px-4 py-10 sm:px-6 lg:max-w-7xl lg:grid-cols-[1.5fr,0.9fr] lg:gap-10 lg:px-8">
+      <div className="mx-auto grid grid-cols-1 gap-8 px-4 py-10 sm:px-6 lg:max-w-7xl lg:grid-cols-[1.5fr,0.9fr] lg:gap-10 lg:px-8">
         <CharacterGrid
           characters={filteredCharacters}
           loading={loading}

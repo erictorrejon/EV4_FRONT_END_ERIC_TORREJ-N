@@ -1,15 +1,16 @@
 const Navbar = ({ searchTerm, setSearchTerm }) => {
   return (
-    <nav className="bg-white shadow-sm shadow-slate-200/80">
+    <nav className="bg-slate-950 shadow-sm shadow-slate-900/60">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-600">Rick and Morty</p>
-            <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Busca tu personaje favorito</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-400">Rick and Morty</p>
+            <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">Busca tu personaje favorito</h2>
           </div>
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600 shadow-sm">
-            <p className="font-semibold text-slate-800">Integrantes del grupo</p>
-            <p>Eric Torrejón</p>
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/95 px-4 py-3 text-sm text-slate-300 shadow-md shadow-slate-950/40">
+            <p className="font-semibold text-slate-100">Proyecto desarrollado por</p>
+            <p className="mt-1 text-white">Eric Torrejón</p>
+            <p className="mt-2 text-xs text-slate-400">Responsivo, usable y optimizado para evaluación final.</p>
           </div>
         </div>
 
