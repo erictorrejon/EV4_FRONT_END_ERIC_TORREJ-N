@@ -1,5 +1,6 @@
-const CharacterCard = ({ character }) => {
+const CharacterCard = ({ character, favorites, toggleFavorite }) => {
   const { image, name, status, species } = character
+  const isFavorite = favorites.some((fav) => fav.id === character.id)
 
   return (
     <article className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/80 transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -25,10 +26,10 @@ const CharacterCard = ({ character }) => {
         <div className="grid grid-cols-2 gap-3">
           <button
             type="button"
-            disabled
-            className="rounded-2xl border border-slate-200 bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-700 opacity-70 cursor-not-allowed"
+            onClick={() => toggleFavorite(character)}
+            className={`rounded-2xl px-3 py-2 text-sm font-semibold transition ${isFavorite ? 'border border-rose-300 bg-rose-100 text-rose-700 shadow-sm' : 'border border-slate-200 bg-slate-100 text-slate-700 hover:border-cyan-300 hover:bg-cyan-50'}`}
           >
-            Favorito
+            {isFavorite ? 'Favorito' : 'Marcar favorito'}
           </button>
           <button
             type="button"

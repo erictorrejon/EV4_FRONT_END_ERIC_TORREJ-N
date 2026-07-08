@@ -3,7 +3,7 @@ import useFetch from '../hooks/useFetch'
 
 const API_URL = 'https://rickandmortyapi.com/api/character'
 
-const CharacterGrid = ({ searchTerm }) => {
+const CharacterGrid = ({ searchTerm, favorites, toggleFavorite }) => {
   const { data, loading, error } = useFetch(API_URL)
 
   if (loading) {
@@ -51,7 +51,12 @@ const CharacterGrid = ({ searchTerm }) => {
       <section className="mx-auto mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filteredCharacters?.length ? (
           filteredCharacters.map((character) => (
-            <CharacterCard key={character.id} character={character} />
+            <CharacterCard
+              key={character.id}
+              character={character}
+              favorites={favorites}
+              toggleFavorite={toggleFavorite}
+            />
           ))
         ) : (
           <div className="col-span-full rounded-3xl border border-slate-200 bg-white p-8 text-center text-slate-700 shadow-lg shadow-slate-200/80">
